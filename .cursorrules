@@ -1,0 +1,118 @@
+# .cursorrules
+
+# 🎮 Project Summary:
+This is a Unity 3D horror stealth game called "Escape the Bootcamp".  
+The player navigates a dark university/bootcamp environment (like nFactorial), collects keys and interacts with doors/buttons to escape.  
+Mentors (real faces on 3D enemy models) patrol and chase the player. Player must avoid them, collect required items, and escape through an exit.
+
+The game includes multiple scenes (Menu, MainScene, Victory, GameOver).  
+Built with Unity’s Built-In Render Pipeline. GitHub is used for version control.
+
+---
+
+# 🗂 Folder Roles:
+
+Assets/Scenes/
+  - Contains Unity `.unity` scene files.
+  - Includes: MainScene (gameplay), MenuScene, VictoryScene, GameOverScene.
+
+Assets/Scripts/
+  - C# scripts organized by game logic responsibility.
+
+Assets/Scripts/Player/
+  - Controls for player movement, interactions, flashlight.
+  - Example: PlayerController.cs, FlashlightToggle.cs
+
+Assets/Scripts/Enemies/
+  - AI behavior for mentor enemies.
+  - Patrol, detect player, chase, kill logic.
+  - Example: MentorAI.cs, LineOfSight.cs
+
+Assets/Scripts/Interactables/
+  - Scripts for game items: keys, doors, buttons.
+  - KeyPickup.cs, DoorUnlock.cs, TerminalAction.cs
+
+Assets/Scripts/Managers/
+  - Global systems and scene control.
+  - GameManager.cs handles game state (won/lost).
+  - SceneLoader.cs loads scenes like VictoryScene, GameOverScene.
+  - AudioManager.cs manages background sounds and SFX.
+
+Assets/Scripts/UI/
+  - UI logic: messages, overlay panels, win/loss screens.
+
+Assets/Prefabs/
+  - Reusable GameObjects: Player, Mentor, Key, Door, Flashlight.
+  - Drag into scenes for consistent setup.
+
+Assets/Models/
+  - 3D model files (mentor.glb, furniture, room pieces).
+  - Supports `.glb`, `.fbx`. Prefer `.glb` for animations and embedded materials.
+
+Assets/Materials/
+  - Material files for applying color/texture to models.
+  - Example: MentorFace.mat uses face texture; FloorDark.mat for horror vibe.
+
+Assets/Textures/
+  - 2D image files used in Materials or UI.
+  - Mentor face images, wall posters, horror decor.
+
+Assets/Audio/
+  - Background music and sound effects.
+  - Example: mentor_laugh.wav, ambient_loop.mp3, door_open.wav.
+
+Assets/UI/
+  - UI prefabs: Victory screen, GameOver overlay, key counter.
+  - Fonts, images, styled UI panels.
+
+Assets/Resources/ (optional)
+  - Assets loaded at runtime using `Resources.Load()` (e.g. random mentor textures)
+
+---
+
+# 🧠 Coding Standards
+
+- All scripts are in **C#** and inherit from `MonoBehaviour`.
+- Use **PascalCase** for filenames and classes (`KeyPickup.cs`, `GameManager.cs`).
+- Keep **one class per file**.
+- Each script handles **one responsibility** (SRP principle).
+- Public fields used for Unity Inspector customization.
+- Use `SerializeField` instead of public when you don’t want other scripts to access the field.
+
+---
+
+# ⚙️ Scene Loading
+
+- Scenes are switched using `UnityEngine.SceneManagement.SceneManager.LoadScene()`.
+- All scenes must be added to **Build Settings** to load at runtime.
+- Scene flow: Menu → MainScene → (Win/Loss) → VictoryScene/GameOverScene → Restart
+
+---
+
+# 🎮 Game Flow Logic
+
+- Player starts in MainScene
+- Must collect 3–5 keys scattered across rooms
+- Use keys to unlock doors and reach exit
+- Mentors patrol areas; if caught → GameOverScene
+- If player escapes → VictoryScene
+- Flashlight may be used (toggle mechanic)
+
+---
+
+# 🛠 Development Environment
+
+- Unity Version: 2022.3 LTS (or whatever is used for hackathon)
+- Rendering: Built-in Render Pipeline
+- Version Control: Git + GitHub (do NOT use Plastic SCM)
+- Cursor is used to generate scripts, logic, and refactor code
+
+---
+
+# 🧠 AI Prompting Guidelines
+
+- Assume NavMesh is used for mentor navigation
+- Use `OnTriggerEnter`, `OnCollisionEnter`, `Input.GetKeyDown`, `SceneManager.LoadScene`
+- Use layers/tags to differentiate Player, Enemy, Interactables
+- Use `Canvas` UI with panels for GameOver, WinScreen
+- Use AudioSource components for sound triggers
