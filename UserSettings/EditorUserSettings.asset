@@ -11,6 +11,12 @@ EditorUserSettings:
     RecentlyUsedSceneGuid-1:
       value: 0052555e5c06080959575b7042210a4444151c7e2d712736787b4f30b1b36268
       flags: 0
+    glTF.saveFilePath:
+      value: 200b683316501b4831030d26193063341900162623292223
+      flags: 0
+    lightmappingBakingProfile:
+      value: 51
+      flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
       flags: 0
